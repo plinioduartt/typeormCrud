@@ -1,8 +1,10 @@
-import express     = require('express');
-import bodyParser  = require("body-parser");
-import routes      = require("./routes");
-import cors        = require("cors");
 import { createConnection } from "typeorm";
+import express    = require('express');
+import bodyParser = require("body-parser");
+import routes     = require("./routes");
+import cors       = require("cors");
+import Roles from './entity/Roles';
+import Users from './entity/Users';
 
 const HOST = "0.0.0.0";
 const PORT = 3000;
@@ -15,7 +17,12 @@ createConnection().then( async (conn) => {
 
     // Inicia as migrations no banco...
     await conn.runMigrations();
-
+    setTimeout( async () => {
+        await Roles.seed();
+    }, 3000);
+    setTimeout( async () => {
+        await Users.seed();
+    },3000);
     const app = express();
 
     app.use(bodyParser.json());
