@@ -1,12 +1,13 @@
 FROM node:alpine
 
-WORKDIR /usr/app
+RUN mkdir -p /usr/app/typeorm
+WORKDIR /usr/app/typeorm
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 RUN npm install
 
-COPY . .
-
-EXPOSE 3001
+COPY . /usr/app/typeorm
 
 CMD ["npm", "start"]
+
+EXPOSE 3000

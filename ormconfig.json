@@ -1,10 +1,10 @@
 {
-   "type": "mysql",
-   "host": "127.0.0.1",
-   "port": 3306,
-   "username": "root",
-   "password": "focal1320",
-   "database": "typeorm",
+   "type": "postgres",
+   "host": "192.168.99.100", 
+   "port": 5432,
+   "username": "postgres",
+   "password": "123456",
+   "database": "dbtypeorm",
    "synchronize": true,
    "logging": false,
    "entities": [

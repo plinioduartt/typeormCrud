@@ -1,14 +1,40 @@
-import {MigrationInterface, QueryRunner} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
 
 export class UserCreate1565987614499 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.query("CREATE TABLE `user` (`id` int NOT NULL AUTO_INCREMENT, `name` varchar(255) NOT NULL, `company` varchar(255) NOT NULL, `email` varchar(255) NOT NULL, UNIQUE INDEX `IDX_e12875dfb3b1d92d7d7c5377e2` (`email`), PRIMARY KEY (`id`)) ENGINE=InnoDB");
+        await queryRunner.createTable(new Table({
+            name: "user",
+            columns: [
+                {
+                    name: "id",
+                    type: "int",
+                    isPrimary: true,
+                    isNullable: false
+                },
+                {
+                    name: "name",
+                    type: "varchar",
+                    isNullable: false
+                },
+                {
+                    name: "company",
+                    type: "varchar",
+                    isNullable: false
+                },
+                {
+                    name: "email",
+                    type: "varchar",
+                    isNullable: false,
+                    isUnique: true
+                }
+            ]
+        }), true)
     }
 
     public async down(queryRunner: QueryRunner): Promise<any> {
-        await queryRunner.query("DROP INDEX `IDX_e12875dfb3b1d92d7d7c5377e2` ON `user`");
-        await queryRunner.query("DROP TABLE `user`");
+        await queryRunner.dropIndex("user", "IDX_e12875dfb3b1d92d7d7c5377e2");
+        await queryRunner.dropTable("user");
     }
 
 }

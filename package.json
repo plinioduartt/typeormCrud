@@ -5,7 +5,7 @@
    "devDependencies": {
       "@types/node": "^8.10.51",
       "ts-node": "^3.3.0",
-      "typescript": "^3.3.3333"
+      "typescript": "^3.5.3"
    },
    "dependencies": {
       "body-parser": "^1.19.0",
@@ -18,7 +18,7 @@
       "typeorm": "^0.2.18"
    },
    "scripts": {
-      "start": "nodemon src/server.ts",
+      "start": "nodemon --legacy-watch src/server.ts",
       "typeorm": "ts-node ./node_modules/.bin/typeorm"
    }
 }
